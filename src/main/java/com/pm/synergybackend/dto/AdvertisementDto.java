@@ -9,7 +9,7 @@ import java.util.List;
 public class AdvertisementDto {
 
         private String id;
-
+        private String title;
         @JsonProperty("main_category")
         private String mainCategory;
 

@@ -46,4 +46,10 @@ public class AdvertisementController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    @GetMapping("/{userId}")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    @Operation(description = "get advertisements by user id")
+    public ResponseEntity<List<AdvertisementDto>> getAllAdvertisementsByuserId(@PathVariable("userId") String userId){
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(advertisementService.getAdvertisementsByUserId(userId));
+    }
 }

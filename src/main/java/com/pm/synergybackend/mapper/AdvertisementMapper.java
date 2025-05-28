@@ -26,6 +26,7 @@ public class AdvertisementMapper {
                 JsonNode jsonNode = mapper.readTree(ad.getText());
 
                 String url = jsonNode.has("url") ? jsonNode.get("url").asText() : null;
+                String title = jsonNode.has("title") ? jsonNode.get("title").asText() : null;
                 String description = jsonNode.has("description") ? jsonNode.get("description").asText() : null;
                 List<String> imageUrls = new ArrayList<>();
                 if (jsonNode.has("image_urls") && jsonNode.get("image_urls").isArray()) {
@@ -42,6 +43,7 @@ public class AdvertisementMapper {
                         .wantedOffering(ad.getWanted_offering())
                         .createdAt(ad.getCreated_at().toString()) // Optional: use formatter.format() if desired
                         .description(description)
+                        .title(title)
                         .url(url)
                         .imageUrls(imageUrls)
                         .build();
@@ -139,7 +141,6 @@ public class AdvertisementMapper {
                     .transaction_type(dto.getTransactionType())
                     .wanted_offering(dto.getWantedOffering())
                     .created_at(createdAt)
-                    .userId(null) // Set if known
                     .ad_embedding(null) // Populate separately if needed
                     .build();
 

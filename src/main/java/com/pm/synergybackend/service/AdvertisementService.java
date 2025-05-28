@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AdvertisementService {
@@ -53,6 +54,14 @@ public class AdvertisementService {
             e.printStackTrace(); // Replace with proper logging in production.
             return false;
         }
+    }
+
+    public List<AdvertisementDto>   getAdvertisementsByUserId(String userId){
+        List<Advertisements> ads = advertisementRepository.findByUserId(userId);
+
+        return ads.stream()
+                .map(AdvertisementMapper::convertToDto)
+                .collect(Collectors.toList());
     }
 
 }

@@ -10,15 +10,15 @@ import java.util.List;
 @Builder
 public class AdvertisementsCreateDto {
 
-    public String UserId;
-    private String id;
 
+    private String id;
+    private String title;
     @JsonProperty("main_category")
     private String mainCategory;
 
     @JsonProperty("sub_category")
     private String subCategory;
-
+    public String userId;
     @JsonProperty("created_at")
     private String createdAt;
 
